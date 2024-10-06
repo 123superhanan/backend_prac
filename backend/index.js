@@ -1,20 +1,45 @@
-require('dotenv').config()
-const express = require('express')
+import express from "express";
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+
+
+app.get("/", (req, res) => {
+    res.send("server is ready")
 })
 
-app.get("/instagram", (req, res) => {
-    res.send("_thehanism_")
+//getting routes of five jokes
+app.get("/jokes", (req, res) => {
+  const jokes = [
+    {
+      "id": 1,
+      "title": "Skeleton Fight",
+      "joke": "Why don't skeletons fight each other? Because they don't have the guts!"
+    },
+    {
+      "id": 2,
+      "title": "Fake Spaghetti",
+      "joke": "What do you call fake spaghetti? An impasta!"
+    },
+    {
+      "id": 3,
+      "title": "Scarecrow Award",
+      "joke": "Why did the scarecrow win an award? Because he was outstanding in his field!"
+    },
+    {
+      "id": 4,
+      "title": "Eggs Crack",
+      "joke": "Why don't eggs tell jokes? They'd crack each other up!"
+    },
+    {
+      "id": 5,
+      "title": "Tired Bicycle",
+      "joke": "Why couldn't the bicycle stand up by itself? It was two-tired!"
+    }
+  ]
+res.send(jokes);
 })
 
-app.get("/login", (req, res) => {
-    res.send('<h1>login page</h1>')
-})
-
-app.listen(process.env.PORT, () => {
-  console.log(`Hanan's server app listening on port ${port}`)
+app.listen(port, () => {
+  console.log(`serve at http://localhost: ${port}`)
 })
